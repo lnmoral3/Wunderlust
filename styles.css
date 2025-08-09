@@ -80,19 +80,20 @@ h4, p, q, small, nav, nav h2, button, form, a {
     font-style: normal;
 }
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 h2, h3 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     line-height: 2;
 }
 h4 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     text-align: center;
     font-weight: 600;
 }
-p, q, form, input, select {
-    font-size: 1.25rem;
+p, q, form, input, select, 
+#about > div > section:first-child::after, #contact .form-required {
+    font-size: 1rem;
     line-height: 1.5;
 }
 
@@ -129,7 +130,7 @@ header{
     max-width: 170px;
     height: auto;
     display: block;
-    padding-top: 0.5rem;
+    padding-top: 1rem;
 }
 header h1 {
     grid-column: 1 / 3;
@@ -332,7 +333,6 @@ nav {
     content: "1,405 mi sq";
     display: block;
     color: var(--black);
-    font-size: 1.25rem;
     text-align: center;
     font-family: var(--montserrat);
 }
@@ -353,7 +353,6 @@ nav {
     font-style: italic;
     font-family: var(--montserrat);
     font-weight: 400;
-    font-size: 1.5rem;
 }
 #contact .required {
     color: var(--purple);
@@ -524,15 +523,27 @@ footer a {
 /*MEDIA QUERIES*/
 /*MEDIUM SCREENS*/
 @media screen and (min-width: 768px) {
+    h1 {
+        font-size: 4rem;
+    }
+    h2, h3 {
+        font-size: 3rem;
+    }
+    h4 {
+        font-size: 2rem;
+    }
+    p, q, form input, select, 
+    #about > div > section:first-child::after, #contact .form-required {
+        font-size: 1.25rem;
+    }
     /*HEADER STYLES*/
     header {
         grid-template-rows: auto auto auto;
     }
-    #logo {
+    #logo img{
         grid-column: 1 / 2;
         grid-row: 1 / 2;
-        width: 300px;
-        margin-left: 0;
+        max-width: 300px;
     }
     header h1,
     header p {
