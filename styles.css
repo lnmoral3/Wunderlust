@@ -1,0 +1,794 @@
+/*Leah Morales*/
+
+/*IMPORTED FONTS*/
+@import url('https://fonts.googleapis.com/css2?family=Molle&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*CSS RESET*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, var(--teal), var(--white) 300px);
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --yellow: #F6D64A;
+    --teal: #55BCD5;
+    --purple: #9B26B0;
+    --blue: #499BD2;
+    --dk-gray: #222222;
+    --lt-gray: #EAEAEA;
+    --white: #FFFFFF;
+    --black: #000000;
+
+    --molle: 'Molle', cursive;
+    --montserrat: 'Montserrat', sans-serif;
+}
+
+/*GLOBAL STYLES*/
+h1, h2, h3 {
+    font-family: var(--molle);
+    font-weight: 400;
+    font-style: italic;
+}
+h4, p, q, small, nav, nav h2, button, form, a {
+    font-family: var(--montserrat);
+    font-weight: 400;
+    font-style: normal;
+}
+h1 {
+    font-size: 4rem;
+}
+h2, h3 {
+    font-size: 3rem;
+    line-height: 2;
+}
+h4 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+p, q, form, input, select {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+/*SKIP LINK*/
+#skip {
+    position: absolute;
+    top: -4rem;
+    background: var(--teal);
+    color: var(--black);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: top 0.3s ease-in-out;
+}
+#skip:focus-visible {
+    top: 0;
+    z-index: 2;
+}
+
+/*HEADER STYLES*/
+header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 1rem 2rem;
+    align-items: center;
+    gap: 1rem;
+}
+#logo {
+    grid-column: 1/ 2;
+    grid-row: 1 / 2;
+    width: 90%;
+    margin-left: -2rem;
+}
+header h1 {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+}
+header p {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    font-size: 20pt;
+}
+nav {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    transform: translateX(-100vw);
+}
+/*TOGGLE STYLES*/
+#toggle {
+    display: none;
+}
+#menu-toggle label {
+    background: var(--yellow);
+    color: var(--dk-gray);
+    position: relative;
+    right: -2rem;
+    font-weight: 600;
+    padding: 0.75rem 5rem;
+    margin: 0;
+    z-index: 1;
+    text-align: center;
+}
+/*TOGGLE LABEL WHEN CHECKED*/
+#toggle:checked + label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--black);
+    color: var(--white);
+    width: 100vw;
+    padding: 1rem 0;
+    z-index: 999;
+    text-align: center;
+}
+/*DEFAULT HIDDEN NAV*/
+#menu-toggle ul {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    margin: 0;
+    padding-top: 3.5rem;
+    background: var(--black);
+    z-index: 10;
+}
+/*VISIBLE CHECKED MENU*/
+#toggle:checked + label + ul {
+    display: flex;
+}
+#menu-toggle ul li a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--black);
+    background-color: var(--teal);
+    border: 1px solid var(--black);
+    width: 100%;
+    text-align: center;
+}
+
+/*INTRO STYLES*/
+#intro {
+    padding-bottom: 2rem;
+}
+#intro p,
+#intro h2 {
+    padding: 0 2rem;
+    margin: 0;
+}
+#img-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+#img-grid img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    padding-top: 0;
+}
+
+/*"PLAN YOUR TRIP" STYLES*/
+#plan {
+    padding: 1rem 2rem;
+    background: var(--yellow);
+}
+#plan > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+#plan > div > section {
+    font-weight: lighter;
+    background: var(--teal);
+    border: 3px solid var(--white);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+    min-width: 0;
+}
+#plan > div > section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+#plan h4 {
+    padding-bottom: 2rem;
+}
+
+/*"TESTIMONIALS" STYLES */
+#testimonials {
+    padding: 1rem 2rem;
+}
+#testimonials > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+#testimonials > div > section {
+    text-align: center;
+    padding: 0 3.25rem;
+}
+#testimonials img {
+    padding-bottom: 1rem;
+}
+#testimonials h4 {
+    font-weight: 600;
+}
+#testimonials q {
+    font-style: italic;
+    quotes: "“" "”";
+}
+#testimonials q::before {
+    content: open-quote;
+}
+#testimonials q::after {
+    content: close-quote;
+}
+
+/*"ABOUT YOUR DESTINATION" STYLES*/
+#about {
+    padding: 1rem 2rem;
+    background: var(--blue);
+}
+#about h3 {
+    line-height: 1.5;
+}
+#about h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+#about > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+#about > div > section {
+    flex: 1 1 calc(50% - 4rem);
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+#about > div > section:first-child {
+    position: relative;
+}
+#about > div > section:first-child p {
+    display: none;
+}
+#about > div > section:first-child::after {
+    content: "1,405 mi sq";
+    display: block;
+    color: var(--black);
+    font-size: 1.25rem;
+    text-align: center;
+    font-family: var(--montserrat);
+}
+#about img {
+    height: 110px;
+    object-fit: cover;
+    width: auto;
+}
+
+/*"CONTACT US" STYLES*/
+#contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 2rem;
+}
+#contact .form-required {
+    font-style: italic;
+    font-family: var(--montserrat);
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+#contact .required {
+    color: var(--purple);
+    font-size: 1.75rem;
+    font-weight: 400;
+    padding-left: 0.25rem;
+}
+/*FORM*/
+#contact form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 2rem;
+    box-sizing: border-box;
+}
+#names, 
+#nums, 
+#selects {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+#nums fieldset {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+}
+#contact form label,
+#contact form input,
+#contact form select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+#contact form input,
+#contact form select {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 3px solid var(--purple);
+    font-family: var(--montserrat);
+    font-weight: 400;
+    color: var(--black);
+    height: 70px;
+    box-sizing: border-box;
+
+}
+#contact input::placeholder {
+    color: var(--black);
+}
+#contact form label,
+#contact form legend {
+    font-family: var(--montserrat);
+    font-weight: 600;
+}
+
+/*RADIO BUTTON STYLES*/
+.radio-label {
+    text-transform: none;
+    font-weight: 400;
+}
+.radio-input {
+    position: relative;
+    display: inline-flex;
+    width: 70px;
+    height: 70px;
+    margin: 0.5rem 1rem 1rem 0;
+    vertical-align: middle;
+}
+.radio-input input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+    color: currentcolor;
+}
+.radio-control {
+    width: 70px;
+    height: 70px;
+    border: 3px solid var(--purple);
+    border-radius: 50%;
+    background-color: var(--white);
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+.radio-control::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--purple);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+}
+.radio-input input[type="radio"]:checked + .radio-control {
+    background-color: var(--white);
+    border-color: var(--purple);
+    
+}
+.radio-input input[type="radio"]:checked + .radio-control::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+/*SELECT ARROW STYLES*/
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-family: inherit;
+    padding-right: 2rem;
+}
+.custom-select::after{
+    content: "";
+    position: absolute;
+    top: 25%;
+    right: 25px;
+    width: 50px;
+    height: 30px;
+    background: var(--purple);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    pointer-events: none;
+}
+/*SUBMIT BUTTON STYLES*/
+#contact #mySubmit {
+    background: var(--purple);
+    color: var(--white);
+    font-weight: 600;
+    margin-top: 2rem;
+}
+/*FOOTER STYLES*/
+footer {
+    background: var(--lt-gray);
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+footer p,
+footer a {
+    font-size: 1.25rem;
+    color: var(--black);
+    font-weight: 400;
+    padding: 0.5rem 0;
+    text-decoration: none;
+}
+
+/*MEDIA QUERIES*/
+/*MEDIUM SCREENS*/
+@media screen and (min-width: 768px) {
+    /*HEADER STYLES*/
+    header {
+        grid-template-rows: auto auto auto;
+    }
+    #logo {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        width: 300px;
+        margin-left: 0;
+    }
+    header h1,
+    header p {
+        grid-column: 2 / 3;
+    }
+    header h1 {
+        grid-row: 1 / 2;
+    }
+    header p {
+        grid-row: 2 / 3;
+        font-size: 1.25rem;
+    }
+    /*NAV STYLES*/
+    nav {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+        justify-content: center;
+        display: flex;
+    }
+    #menu-toggle ul {
+        display: flex;
+        flex-direction: row;
+        background: transparent;
+        width: auto;
+        padding: 0;
+        margin: 0;
+        position: static;
+    }
+    #menu-toggle ul li a {
+        background: var(--white);
+        margin: 1rem;
+        border: none;
+        padding: 1rem 1.5rem;
+        width: auto;
+        text-align: center;
+        font-weight: bold;
+    }
+    #menu-toggle ul li.active a {
+        background: var(--yellow);
+    }
+    #toggle,
+    #menu-toggle label {
+        display: none;
+    }
+
+    /*MAIN STYLES*/
+    /*INTRO STYLES*/
+    #intro {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    #intro p,
+    #intro h2 {
+    padding: 0;
+}
+    #img-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #img-grid > picture {
+        grid-column: 1 / -1;
+    }
+    #img-grid > picture img {
+        width: 100%;
+        aspect-ratio: auto;
+    }
+
+    /*"PLAN YOUR TRIP" STYLES*/
+    #plan {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    #plan > div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #plan > div > section {
+        box-sizing: border-box;
+    }
+
+    /*"TESTIMONIALS" STYLES*/
+    #testimonials {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    #testimonials > div{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #testimonials > div > section {
+        padding: 0;
+    }
+
+    /*"ABOUT YOUR DESTINATION" STYLES*/
+    #about {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    #about > div {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /*"CONTACT US" STYLES*/
+    #contact {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    #contact form {
+        gap: 2rem;
+    }
+    #nums fieldset {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    
+    /*FOOTER STYLES*/
+    footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 4rem;
+    }
+    footer p,
+    footer a {
+        margin: 0;
+    }
+}
+
+/*LARGE SCREENS*/
+@media screen and (min-width: 1200px) {
+    /*HEADER STYLES*/
+    header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto 1fr;
+        box-sizing: border-box;
+        width: 100%;
+        gap: 1rem 2rem;
+        padding-bottom: 6rem;
+    }
+    #logo {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+    }
+    header h1 {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        margin: 0;
+        max-width: 100%;
+        min-width: 0;
+        align-self: center;
+        justify-self: start;
+    }
+    header p {
+        grid-column: 2 / 4;
+        grid-row: 2 / 3;
+        display: flex;
+
+    }
+    nav {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        max-width: 100%;
+        min-width: 0;
+    }
+    #menu-toggle ul {
+        max-width: 100%;
+        box-sizing: border-box;
+        padding-top: 0;
+        right: 0;
+    }
+
+    /*INTRO STYLES*/
+    #intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto;
+        gap: 1rem 2rem;
+    }
+    #intro h2 {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    #intro p {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        margin-top: 5rem;
+    }
+    #img-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        gap: 1rem;
+    }
+    /*"PLAN YOUR TRIP" STYLES*/
+    #plan > div {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /*"TESTIMONIALS" STYLES*/
+    #testimonials > div{
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /*"ABOUT YOUR DESTINATION" STYLES*/
+    #about > div {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /*"CONTACT US" STYLES*/
+    #contact {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    #contact form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem 2rem;
+    align-items: start;
+    }
+    #names{
+        grid-column: 1 / 2;
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 1rem;
+    }
+    #nums {
+        grid-column: 2 / 3;
+        display: grid;
+        grid-template-rows: auto auto auto;
+        gap: 1rem;
+    }
+    #nums fieldset {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        border: none;
+    }
+    #selects {
+        grid-column: 3 / 4;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        height: 100%;
+    }
+    #contact #mySubmit {
+        margin-top: auto;
+        align-self: end;
+        width: 50%;
+    }
+    footer {
+        display: flex;
+        padding: 1rem 4rem;
+        align-items: center;
+        padding: 1rem 4rem;
+        gap: 2rem;
+    }
+    footer a:first-of-type {
+        margin-left: auto;
+    }
+}
